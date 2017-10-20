@@ -1,0 +1,9 @@
+'use strict';
+
+function lol() {
+  console.log('lol');
+}
+
+lol();
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsU0FBUyxHQUFULEdBQWU7QUFDYixVQUFRLEdBQVIsQ0FBWSxLQUFaO0FBQ0Q7O0FBRUQiLCJmaWxlIjoiaW5kZXgtY29tcGlsZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJmdW5jdGlvbiBsb2woKSB7XG4gIGNvbnNvbGUubG9nKCdsb2wnKTtcbn1cblxubG9sKCk7Il19
