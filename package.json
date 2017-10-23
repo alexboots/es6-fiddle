@@ -5,13 +5,21 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "babel": "npx babel -w --presets es2015 index.js --out-file index-compiled.js --source-maps inline",
+    "watch": "rollup -c -w",
     "start": "http-server"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.24.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "http-server": "^0.10.0"
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "http-server": "^0.10.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
   }
 }

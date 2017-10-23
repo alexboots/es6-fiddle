@@ -165,4 +165,73 @@ console.log("\n\n\n\n");
 // Generators
 /********************************************/
 
+// Generator functions (which you declare) return generator
+//  objects
+
+// Generator objects can be iterated wirth the same ^ three things
+//  iterator objects can be
+
+// Generator functions are letting you declare a _special kind_
+//  of iterator functions (caps for no reason)
+
+// Fun bit: They can SUSPECT EXECUTION,
+//   while retaining their CONTEXT
+
+// You make a generator function by adding a *
+//  after `function` 
+
+// lol god damnit
+// import like this so babel doesn't use require so we can use compiled
+//  V in browser
+import 'babel-polyfill/dist/polyfill';
+
+function* someGenerator () {
+  yield 'w'
+  yield 't'
+  yield 'f'
+}
+
+
+
+// Generators abide by both the iterable AND iterator protocol
+
+let generatorObject = someGenerator()
+
+// Is built using the generator function
+typeof generatorObject[Symbol.iterator] === 'function'
+
+// Has that 'next' method that iterator's have
+typeof generatorObject.next === 'function'
+
+// The iterator for the generator object is the generatorObject itself
+generatorObject[Symbol.iterator]() === generatorObject
+
+// and yeah
+console.log([...generatorObject]);
+console.log(Array.from(generatorObject));
+
+// WHATS THIS `yield` ABOUT
+
+// Whenver yield is hit, the value is emitted and the 
+//  function execuition is SUSPENDED
+
+function* anotherGenerator() {
+  yield 'h'
+  console.log('?');
+  yield 'i'
+  console.log('??');
+  yield '!'
+  console.log('???');
+}
+
+let generateStuffThx = anotherGenerator()
+for(let thing of generateStuffThx) {
+  console.log(thing);
+}
+
+
+
+
+
+
 
