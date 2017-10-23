@@ -7575,6 +7575,16 @@ module.exports = _dereq_(23);
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
 },{}]},{},[1]);
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
 var asyncGenerator = function () {
   function AwaitValue(value) {
     this.value = value;
@@ -7826,6 +7836,9 @@ var _console;
 
 var _marked = /*#__PURE__*/regeneratorRuntime.mark(someGenerator);
 var _marked2 = /*#__PURE__*/regeneratorRuntime.mark(anotherGenerator);
+var _marked3 = /*#__PURE__*/regeneratorRuntime.mark(yetAnotherGenerator);
+var _marked4 = /*#__PURE__*/regeneratorRuntime.mark(generator);
+var _marked5 = /*#__PURE__*/regeneratorRuntime.mark(generator);
 
 // Stuff I havent really used in es6 that I should remember to use
 
@@ -7916,10 +7929,7 @@ console.log("\n\n\n\n");
 {
   
 }
-// console.log(nested(), "\n\n");
-//    nested is not defined
-
-// another EXAMPLE
+// Consts are not frozen objects
 
 var youCanChangeThisItsOk = { areYouSure: ['yes', 'I', 'am'] };
 
@@ -7931,6 +7941,7 @@ console.log('youCanChangeThisItsOk', youCanChangeThisItsOk);
 console.log("\n\n\n\n");
 
 // @@iterator ???
+console.log('@@iterator');
 /********************************************/
 // @@iterator is called once during some itition (for of / forEach / whatever)
 
@@ -8015,6 +8026,7 @@ console.log(Array.from(someName));
 console.log("\n\n\n\n");
 
 // Generators
+console.log('Generators:');
 /********************************************/
 
 // Generator functions (which you declare) return generator
@@ -8079,7 +8091,7 @@ console.log(Array.from(generatorObject));
 // WHATS THIS `yield` ABOUT
 
 // Whenver yield is hit, the value is emitted and the 
-//  function execuition is SUSPENDED
+//   function execuition is SUSPENDED
 
 function anotherGenerator() {
   return regeneratorRuntime.wrap(function anotherGenerator$(_context2) {
@@ -8135,3 +8147,110 @@ try {
     }
   }
 }
+
+function yetAnotherGenerator() {
+  return regeneratorRuntime.wrap(function yetAnotherGenerator$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return 'h';
+
+        case 2:
+          console.log('?');
+          _context3.next = 5;
+          return 'i';
+
+        case 5:
+          console.log('??');
+          _context3.next = 8;
+          return '!';
+
+        case 8:
+          console.log('???');
+
+        case 9:
+        case 'end':
+          return _context3.stop();
+      }
+    }
+  }, _marked3, this);
+}
+
+var generateMoreStuff = yetAnotherGenerator();
+
+console.log("hmm \n\n");
+console.log([].concat(toConsumableArray(generateMoreStuff)));
+// ^ This only prints ["h", "i", "!"]
+//  w/out console logs because we are constructing the range 
+//  for the entire sequence
+
+// You can use `yield*` anything that adheres to the iterator protocol
+//  to deligate to another generator function.
+
+function generator() {
+  return regeneratorRuntime.wrap(function generator$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          return _context4.delegateYield('hi!', 't0', 1);
+
+        case 1:
+        case 'end':
+          return _context4.stop();
+      }
+    }
+  }, _marked4, this);
+}
+console.log([].concat(toConsumableArray(generator()))); // ["h", "e", "l", "l"]
+
+
+function generator() {
+  return regeneratorRuntime.wrap(function generator$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return 'only';
+
+        case 2:
+        case 'end':
+          return _context5.stop();
+      }
+    }
+  }, _marked5, this);
+}
+var g = generator();
+console.log(g.next());
+// <- { done: false, value: 'only' }
+console.log(g.next());
+// <- { done: true }
+console.log(g.next());
+// <- { done: true }
+
+
+// They also have some more methods besdies
+
+// * A yield expression returning the next value in the sequence
+// * A return statement returning the last value in the sequence
+// * A throw statement halts execution in the generator entirely
+// Reaching the end of the generator function signals { done: true }
+
+
+// You can send values.. INTO.. the generator :O
+// Look at genie example 
+//  https://ponyfoo.com/articles/es6-generators-in-depth
+
+// async / await is based on generators principles. 
+//  Pretty cool stuff
+
+
+console.log("\n\n\n\n\n\n");
+
+var whatAreYou = Symbol("it would help if I was described huh");
+console.log('whatAreYou', whatAreYou);
+console.log(typeof whatAreYou === 'undefined' ? 'undefined' : _typeof(whatAreYou)); // `symbol`
+
+
+// Get back to tomorrow:
+// https://ponyfoo.com/articles/es6-symbols-in-depth

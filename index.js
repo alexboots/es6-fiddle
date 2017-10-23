@@ -100,6 +100,7 @@ console.log('youCanChangeThisItsOk', youCanChangeThisItsOk);
 console.log("\n\n\n\n");
 
 // @@iterator ???
+console.log('@@iterator')
 /********************************************/
 // @@iterator is called once during some itition (for of / forEach / whatever)
 
@@ -163,6 +164,7 @@ console.log(Array.from(someName));
 console.log("\n\n\n\n");
 
 // Generators
+console.log('Generators:');
 /********************************************/
 
 // Generator functions (which you declare) return generator
@@ -192,7 +194,6 @@ function* someGenerator () {
 }
 
 
-
 // Generators abide by both the iterable AND iterator protocol
 
 let generatorObject = someGenerator()
@@ -213,7 +214,7 @@ console.log(Array.from(generatorObject));
 // WHATS THIS `yield` ABOUT
 
 // Whenver yield is hit, the value is emitted and the 
-//  function execuition is SUSPENDED
+//   function execuition is SUSPENDED
 
 function* anotherGenerator() {
   yield 'h'
@@ -230,6 +231,75 @@ for(let thing of generateStuffThx) {
 }
 
 
+function* yetAnotherGenerator() {
+  yield 'h'
+  console.log('?');
+  yield 'i'
+  console.log('??');
+  yield '!'
+  console.log('???');
+}
+
+let generateMoreStuff = yetAnotherGenerator();
+
+console.log("hmm \n\n");
+console.log([...generateMoreStuff]);
+// ^ This only prints ["h", "i", "!"]
+//  w/out console logs because we are constructing the range 
+//  for the entire sequence
+
+// You can use `yield*` anything that adheres to the iterator protocol
+//  to deligate to another generator function.
+
+function* generator () {
+  yield* 'hi!' // gets turned into like yield 'h'; yield 'o'; yield '!'
+}
+console.log([...generator()]) // ["h", "e", "l", "l"]
+
+
+function* generator () {
+  yield 'only'
+}
+var g = generator()
+console.log(g.next())
+// <- { done: false, value: 'only' }
+console.log(g.next())
+// <- { done: true }
+console.log(g.next())
+// <- { done: true }
+
+
+// They also have some more methods besdies
+
+// * A yield expression returning the next value in the sequence
+// * A return statement returning the last value in the sequence
+// * A throw statement halts execution in the generator entirely
+// Reaching the end of the generator function signals { done: true }
+
+
+// You can send values.. INTO.. the generator :O
+// Look at genie example 
+//  https://ponyfoo.com/articles/es6-generators-in-depth
+
+// async / await is based on generators principles. 
+//  Pretty cool stuff
+
+
+console.log("\n\n\n\n\n\n");
+
+// Symbols | new primitive type (like strings or numbers or w/)
+/********************************************/
+
+// Note NO `new` 
+let hmm = Symbol()
+
+let whatAreYou = Symbol("it would help if I was described huh")
+console.log('whatAreYou', whatAreYou);
+console.log(typeof whatAreYou) // `symbol`
+
+
+// Get back to tomorrow:
+// https://ponyfoo.com/articles/es6-symbols-in-depth
 
 
 
